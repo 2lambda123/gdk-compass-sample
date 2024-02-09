@@ -21,6 +21,7 @@ import com.google.android.glass.sample.compass.util.MathUtils;
 
 import android.content.Context;
 import android.util.Log;
+import io.github.pixee.security.BoundedLineReader;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -135,7 +136,7 @@ public class Landmarks {
             BufferedReader reader = new BufferedReader(new InputStreamReader(is));
 
             String line;
-            while ((line = reader.readLine()) != null) {
+            while ((line = BoundedLineReader.readLine(reader, 5_000_000)) != null) {
                 buffer.append(line);
                 buffer.append('\n');
             }
